@@ -18,6 +18,7 @@ The Flask Pose Estimation API allows you to upload an image, processes it to det
 ## Requirements
 
 - Python 3.7+
+- Conda (instead of PIP)
 - Flask
 - Flask-CORS
 - OpenCV
@@ -25,6 +26,8 @@ The Flask Pose Estimation API allows you to upload an image, processes it to det
 - MediaPipe
 
 ## Installation
+
+Note: You need to have installed Conda in your system
 
 1. Clone the repository:
 
@@ -41,19 +44,23 @@ cd flask-pose-estimation-api
 3. Create and activate a virtual environment:
 
 ```sh
-python3 -m venv venv
+conda create -n <venv_name>
 
-# For Windows
-venv\Scripts\activate
-
-# For Linux and macOS
-source venv/bin/activate
+conda activate <venv_name>
 ```
 
 4. Install the required packages:
 
 ```sh
+conda install pip
+
 pip install -r requirements.txt
+```
+
+5. Deactivate the virtual environment (after stop working)
+
+```sh
+conda deactivate
 ```
 
 ## Usage
