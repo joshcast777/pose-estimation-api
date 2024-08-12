@@ -11,10 +11,7 @@ import tempfile
 
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
-from moviepy.editor import VideoFileClip
-from moviepy.video.io.ffmpeg_writer import FFMPEG_VideoWriter
 from ultralytics import YOLO
-from werkzeug.utils import secure_filename
 
 from enums.http_methods import HttpMethods
 from enums.request_body import RequestBody
@@ -206,7 +203,6 @@ def estimate_pose_video():
 		print("ELIMINA VIDEO RESULTADO")
 		os.remove(output_path)
 
-	print(video_base64)
 	response = {
 		"file": video_base64
 	}
