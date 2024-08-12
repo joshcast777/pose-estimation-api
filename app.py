@@ -73,16 +73,16 @@ def estimate_pose_image():
 
 		return jsonify(response), 400
 
-	file_path = os.path.join(app.config["IMAGES_FOLDER"], file.filename)
+	file_path = os.path.join(IMAGES_FOLDER, file.filename)
 	file.save(file_path)
 
 	# Use the pre-trained model to perform the estimation
 	model = YOLO(app.config["MODEL_PATH"])
 
-	results = model(f"{app.config["IMAGES_FOLDER"]}/{file.filename}")
+	results = model(f"{IMAGES_FOLDER}/{file.filename}")
 	image_with_poses = results[0].plot()
 
-	yolo_result_path = os.path.join(app.config["IMAGES_FOLDER"], f"yolo_{file.filename}")
+	yolo_result_path = os.path.join(IMAGES_FOLDER, f"yolo_{file.filename}")
 	cv2.imwrite(yolo_result_path, image_with_poses)
 
 	angles = {
@@ -167,7 +167,7 @@ def estimate_pose_video():
 
 		return jsonify(response), 400
 
-	file_path = os.path.join(app.config["VIDEOS_FOLDER"], file.filename)
+	file_path = os.path.join(VIDEOS_FOLDER, file.filename)
 	file.save(file_path)
 
 	model = YOLO(app.config["MODEL_PATH"])
@@ -178,7 +178,7 @@ def estimate_pose_video():
 	fps = int(video_capture.get(cv2.CAP_PROP_FPS))
 
 	fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-	output_path = os.path.join(app.config["VIDEOS_FOLDER"], f"yolo_{file.filename}")
+	output_path = os.path.join(VIDEOS_FOLDER, f"yolo_{file.filename}")
 	out = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))
 
 	while True:
